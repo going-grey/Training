@@ -4,72 +4,79 @@
     <meta charset="UTF-8">
     <title>Project 0.1</title>
     <style>
-        h1 {
-          font-size: medium;
+        h3 {
           font-family: 'Segoe UI';
+        }
+        .center-text {
+            text-align: center;
+            padding: 15px;          /* by adding an equal amount of padding on all four sides (without adjusting height), keeps the text centered */
         }
         .header {
             color: white;
             background-color: darkgrey;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             border-radius: 5px;
         }
         .footer {
             color: white;
             background-color: grey;
-            height: 100px;
+            border-radius: 5px;
+        }
+        .flex-container {
+            height: 700px;
+            margin-top: 5px;
+            margin-bottom: 5px;
             display: flex;
+        }
+        .flex-item {
+            border: 1px solid lightgrey;
+            flex-grow: 1;           /* grow to fill the available space equally, in the flex container */
+        }
+        .flex-item-center-text {
+            display: flex;          /* treating the text as a flex item, centering the text along the main and cross axis */
             align-items: center;
             justify-content: center;
-            border-radius: 5px;
         }
         .sidebar {
-            float: right;
-            width: 170px;
-            margin-top: 5px;
-            height: 700px;
             color: black;
             background-color: white;
-            border: 1px solid lightgrey;
-
+            border-radius: 5px;
         }
         .main-content {
-            margin-top: 5px;
-            margin-right: 180px;
-            margin-bottom: 5px;
-            height: 700px;
+            margin-right: 5px;       
             color: black;
-            background-color: lightgrey;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-color: lightgrey;      
             border-radius: 5px;
+            flex-grow: 4;           /* grow the main content section by a factor of 4 */
         }
     </style>
 </head>
 <body>
     <hgroup>
         <header class="header">
-            <div class="center">
-            <h1>Header</h1>
+            <div class="center-text">
+                <h3>Header</h3>
             </div>
         </header>
     </hgroup>
-    <aside class="sidebar">
-        <section class="aside-section">
-            <h1>Sidebar</h1>            
-        </section>
-    </aside>
-    <div class="main-content">
-        <section id="main-section">
-            <h1>Main content</h1>       
-        </section>
+
+    <div class="flex-container">
+        <div class="flex-item main-content flex-item-center-text">
+            <section class="main-section">
+                <h3>Main content</h3>       
+            </section>
+        </div>
+
+        <aside class="flex-item sidebar flex-item-center-text">
+            <section class="aside-section">
+                <h3>Sidebar</h3>            
+            </section>
+        </aside>
     </div>
+
     <footer class="footer">
-        <h1>Footer</h1>
+        <div class="center-text">
+            <h3>Footer</h3>
+        </div>       
     </footer>
 </body>
 </html>
