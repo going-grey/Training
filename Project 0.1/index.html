@@ -4,6 +4,35 @@
     <meta charset="UTF-8">
     <title>Project 0.1</title>
     <style>
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            color: white;
+            background-color: darkgrey;
+            border-radius: 5px;
+        }
+        main {
+            margin-right: 5px;       
+            color: black;
+            background-color: lightgrey;   
+            border: 1px solid lightgrey;   
+            border-radius: 5px;
+            flex-grow: 4;           /* grow the main content section by a factor of 4 */
+        }
+        aside {
+            color: black;
+            background-color: white;
+            border: 1px solid lightgrey;
+            border-radius: 5px;
+            flex-grow: 1;           /* grow to fill the available space equally, in the flex container */
+        }
+        footer {
+            color: white;
+            background-color: grey;
+            border-radius: 5px;
+        }
         h3 {
           font-family: 'Segoe UI';
         }
@@ -11,72 +40,43 @@
             text-align: center;
             padding: 15px;          /* by adding an equal amount of padding on all four sides (without adjusting height), keeps the text centered */
         }
-        .header {
-            color: white;
-            background-color: darkgrey;
-            border-radius: 5px;
-        }
-        .footer {
-            color: white;
-            background-color: grey;
-            border-radius: 5px;
-        }
         .flex-container {
             height: 700px;
             margin-top: 5px;
             margin-bottom: 5px;
             display: flex;
         }
-        .flex-item {
-            border: 1px solid lightgrey;
-            flex-grow: 1;           /* grow to fill the available space equally, in the flex container */
-        }
         .flex-item-center-text {
             display: flex;          /* treating the text as a flex item, centering the text along the main and cross axis */
             align-items: center;
             justify-content: center;
         }
-        .sidebar {
-            color: black;
-            background-color: white;
-            border-radius: 5px;
-        }
-        .main-content {
-            margin-right: 5px;       
-            color: black;
-            background-color: lightgrey;      
-            border-radius: 5px;
-            flex-grow: 4;           /* grow the main content section by a factor of 4 */
+        @media screen and (max-width: 500px) {      /* discovered this neat responsive trick in the Flexbox course, still need to explore this a bit more */
+            .flex-container {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <hgroup>
-        <header class="header">
-            <div class="center-text">
-                <h3>Header</h3>
-            </div>
-        </header>
-    </hgroup>
+    <header class="center-text">
+        <h3>Header</h3>
+    </header>
 
     <div class="flex-container">
-        <div class="flex-item main-content flex-item-center-text">
-            <section class="main-section">
-                <h3>Main content</h3>       
-            </section>
-        </div>
+        <main class="flex-item-center-text">
+            <article>
+                <h3>Main content</h3> 
+            </article>
+        </main>
 
-        <aside class="flex-item sidebar flex-item-center-text">
-            <section class="aside-section">
-                <h3>Sidebar</h3>            
-            </section>
+        <aside class="flex-item-center-text">
+            <h3>Sidebar</h3>
         </aside>
     </div>
 
-    <footer class="footer">
-        <div class="center-text">
-            <h3>Footer</h3>
-        </div>       
+    <footer class="center-text">
+        <h3>Footer</h3>   
     </footer>
 </body>
 </html>
