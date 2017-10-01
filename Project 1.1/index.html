@@ -1,1 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <title>Project 1.1</title>
+    <style>
+        .grid-container {
+            display: grid;
+            /* only take up as much space as the items require */
+            grid-template-columns: 25px 25px 25px 100px 25px 25px 100px 25px 25px 150px 100px 50px;
+            grid-template-rows: 50px 2px 50px 2px 50px 2px 50px 2px 50px 2px 50px 2px 50px;
+        }
+
+        .grid-item {
+            align-self: center;
+            justify-self: center;
+            font-family: 'Segoe UI';
+        }
+
+        .circle {
+            width: 65%;
+            height: 65%;
+            border-radius: 50%;
+            background-color: #e4e4e7;
+            position: relative;
+        }
+
+        .circle:after {
+            content: '';
+            width: 60%;
+            height: 60%;
+            border-radius: 50%;
+            top: 20%;
+            left: 20%;
+            position: absolute;
+            z-index: 2;
+        }
+
+        .passed:after {
+            background: url(images/passed.png) center no-repeat;
+        }
+
+        .failed:after {
+            background: url(images/failed.png) center no-repeat;
+        }
+
+        .pending:after {
+            background: url(images/pending.png) center no-repeat;
+        }
+
+        .running:after {
+            background: url(images/running.png) center no-repeat;
+        }
+
+        .green:after {
+            background-color: #1ab394;
+        }
+
+        .red:after {
+            background-color: #ed5565;
+        }
+
+        .orange:after {
+            background-color: #f8ac59;
+            color: #f8ac59;
+        }
+
+        .blue:after {
+            background-color: #2e4aa8;
+        }
+
+        .circle-01 {
+            grid-column: 2 / 4;
+            grid-row: 3 / 4;
+        }
+
+        .circle-02 {
+            grid-column: 5 / 7;
+            grid-row: 3 / 4;
+        }
+
+        .circle-03 {
+            grid-column: 8 / 10;
+            grid-row: 3 / 4;
+        }
+
+        .circle-04 {
+            grid-column: 2 / 4;
+            grid-row: 5 / 6;
+        }
+
+        .circle-05 {
+            grid-column: 5 / 7;
+            grid-row: 5 / 6;
+        }
+
+        .circle-06 {
+            grid-column: 8 / 10;
+            grid-row: 5 / 6;
+        }
+
+        .circle-07 {
+            grid-column: 2 / 4;
+            grid-row: 7 / 8;
+        }
+
+        .circle-08 {
+            grid-column: 5 / 7;
+            grid-row: 7 / 8;
+        }
+
+        .circle-09 {
+            grid-column: 8 / 10;
+            grid-row: 7 / 8;
+        }
+
+        .circle-10 {
+            grid-column: 2 / 4;
+            grid-row: 9 / 10;
+        }
+
+        .circle-11 {
+            grid-column: 5 / 7;
+            grid-row: 9 / 10;
+        }
+
+        .circle-12 {
+            grid-column: 8 / 10;
+            grid-row: 9 / 10;
+        }
+
+        .circle-13 {
+            grid-column: 2 / 4;
+            grid-row: 11 / 12;
+        }
+
+        .circle-14 {
+            grid-column: 5 / 7;
+            grid-row: 11 / 12;
+        }
+
+        .circle-15 {
+            grid-column: 8 / 10;
+            grid-row: 11 / 12;
+        }
+
+        .circle-16 {
+            grid-column: 2 / 4;
+            grid-row: 13 / 14;
+        }
+
+        .circle-17 {
+            grid-column: 5 / 7;
+            grid-row: 13 / 14;
+        }
+
+        .circle-18 {
+            grid-column: 8 / 10;
+            grid-row: 13 / 14;
+        }
+
+        .bar {
+            width: 100%;
+            height: 25%;
+            background-color: #e4e4e7;
+            position: relative;
+        }
+
+        .bar:after {
+            content: '';
+            height: 25%;
+            top: 40%;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .bar-01 {
+            grid-column: 3 / 9;
+            grid-row: 3 / 4;
+        }
+
+        .bar-02 {
+            grid-column: 3 / 9;
+            grid-row: 5 / 6;
+        }
+
+        .bar-03 {
+            grid-column: 3 / 9;
+            grid-row: 7 / 8;
+        }
+
+        .bar-04 {
+            grid-column: 3 / 9;
+            grid-row: 9 / 10;
+        }
+
+        .bar-05 {
+            grid-column: 3 / 9;
+            grid-row: 11 / 12;
+        }
+
+        .bar-06 {
+            grid-column: 3 / 9;
+            grid-row: 13 / 14;
+        }
+
+        .progress-01:after {
+            width: 0%;
+        }
+
+        .progress-02:after {
+            width: 40%;
+        }
+
+        .progress-03:after {
+            width: 100%;
+        }
+
+        .progress-04:after {
+            width: 0%;
+        }
+
+        .progress-05:after {
+            width: 100%;
+        }
+
+        .progress-06:after {
+            width: 50%;
+        }
+
+        .header {
+            grid-row: 1 / 2;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .header-01 {
+            grid-column: 2 / 4;
+        }
+
+        .header-02 {
+            grid-column: 5 / 7;
+        }
+
+        .header-03 {
+            grid-column: 8 / 10;
+        }
+
+        .header-04 {
+            grid-column: 11 / 12;
+        }
+
+        .status {
+            grid-column: 11 / 12;
+            font-size: 15px;
+        }
+
+        .status-01 {
+            grid-row: 3 / 4;
+        }
+
+        .status-02 {
+            grid-row: 5 / 7;
+        }
+
+        .status-03 {
+            grid-row: 7 / 9;
+        }
+
+        .status-04 {
+            grid-row: 9 / 11;
+        }
+
+        .status-05 {
+            grid-row: 11 /13;
+        }
+
+        .status-06 {
+            grid-row: 13 / 15;
+        }
+
+        .status-orange {
+            color: #f8ac59;
+        }
+
+        .status-blue {
+            color: #2e4aa8;
+        }
+
+        .status-green {
+            color: #1ab394;
+        }
+
+        .status-red {
+            color: #ed5565;
+        }
+
+        .divider {
+            width: 100%;
+            height: 100%;
+            background-color: #e4e4e7;
+        }
+
+        .divider-01 {
+            grid-column: 1 / 13;
+            grid-row: 2 / 3;
+        }
+
+        .divider-02 {
+            grid-column: 1 / 13;
+            grid-row: 4 / 5;
+        }
+
+        .divider-03 {
+            grid-column: 1 / 13;
+            grid-row: 6 / 7;
+        }
+
+        .divider-04 {
+            grid-column: 1 / 13;
+            grid-row: 8 / 9;
+        }
+
+        .divider-05 {
+            grid-column: 1 / 13;
+            grid-row: 10 / 11;
+        }
+
+        .divider-06 {
+            grid-column: 1 / 13;
+            grid-row: 12 / 13;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="grid-item header header-01">Task1</div>
+        <div class="grid-item header header-02">Task2</div>
+        <div class="grid-item header header-03">Task3</div>
+        <div class="grid-item header header-04">Status</div>
+
+        <div class="grid-item divider divider-01"></div>
+
+        <div class="grid-item bar-01 bar progress-01"></div>
+        <div class="grid-item circle-01 circle pending orange"></div>
+        <div class="grid-item circle-02 circle"></div>
+        <div class="grid-item circle-03 circle"></div>
+        <div class="grid-item status status-01 status-orange">Pending</div>
+
+        <div class="grid-item divider divider-02"></div>
+
+        <div class="grid-item bar-02 bar progress-02 blue"></div>
+        <div class="grid-item circle-04 circle running blue"></div>
+        <div class="grid-item circle-05 circle"></div>
+        <div class="grid-item circle-06 circle"></div>
+        <div class="grid-item status status-02 status-blue">Running</div>
+
+        <div class="grid-item divider divider-03"></div>
+
+        <div class="grid-item bar-03 bar progress-03 green"></div>
+        <div class="grid-item circle-07 circle passed green"></div>
+        <div class="grid-item circle-08 circle passed green"></div>
+        <div class="grid-item circle-09 circle passed green"></div>
+        <div class="grid-item status status-03 status-green">Passed</div>
+
+        <div class="grid-item divider divider-04"></div>
+
+        <div class="grid-item bar-04 bar progress-04"></div>
+        <div class="grid-item circle-10 circle failed red"></div>
+        <div class="grid-item circle-11 circle"></div>
+        <div class="grid-item circle-12 circle"></div>
+        <div class="grid-item status status-04 status-red">Failed</div>
+
+        <div class="grid-item divider divider-05"></div>
+
+        <div class="grid-item bar-05 bar progress-05 green"></div>
+        <div class="grid-item circle-13 circle passed green"></div>
+        <div class="grid-item circle-14 circle passed green"></div>
+        <div class="grid-item circle-15 circle passed green"></div>
+        <div class="grid-item status status-05 status-green">Passed</div>
+
+        <div class="grid-item divider divider-06"></div>
+
+        <div class="grid-item bar-06 bar progress-06 red"></div>
+        <div class="grid-item circle-16 circle passed red"></div>
+        <div class="grid-item circle-17 circle failed red"></div>
+        <div class="grid-item circle-18 circle"></div>
+        <div class="grid-item status status-06 status-red">Failed</div>
+    </div>
+</body>
+
+</html>
